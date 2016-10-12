@@ -8,7 +8,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     if data["name"] isnt "" and data["message"] isnt "" then $('#messages').append('<p>'+data["name"]+': '+data["message"]+'</p>')
-    
+
   speak: (name, message) ->
     @perform 'speak', name: name, message: message
 
@@ -16,6 +16,4 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     nameForm = $('#name_form')
     messageForm = $('#message_form')
     App.room.speak nameForm.val(), messageForm.val()
-    nameForm.preventDefault()
     messageForm.val('')
-    messageForm.preventDefault()
